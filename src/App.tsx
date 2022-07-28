@@ -4,9 +4,9 @@ import initialEmails, { Email } from './data/emails'
 
 import './App.css'
 
-import { Header } from './components/Header'
-import {LeftMenu} from './components/LeftMenu'
-import {EmailList}  from './components/EmailsList'
+import { Header } from './components/Header/Header'
+import {LeftMenu} from './components/LeftMenu/LeftMenu'
+import {EmailList}  from './components/EmailList/EmailList'
 
 
 const getReadEmails = (emails: Email[]) => emails.filter(email => !email.read)
