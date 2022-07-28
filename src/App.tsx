@@ -3,8 +3,10 @@ import { useState } from 'react'
 import initialEmails, { Email } from './data/emails'
 
 import './App.css'
-import Header from './header'
-import LeftMenu from './LeftMenu'
+
+import { Header } from './components/Header'
+import {LeftMenu} from './components/LeftMenu'
+import {EmailList}  from './components/EmailsList'
 
 
 const getReadEmails = (emails: Email[]) => emails.filter(email => !email.read)
@@ -35,7 +37,7 @@ function App() {
       emails.map(email =>
         email.id === targetEmail.id ? { ...email, read: !email.read } : email
       )
-      
+
     setEmails(updatedEmails)
   }
 
@@ -57,36 +59,22 @@ function App() {
     <div className="app">
   
       <Header/>
-     <LeftMenu/>
-      <main className="emails">
-        <ul>
-          {getFilteredEmails().map((email, index) => (
-            <li
-              key={index}
-              className={`email ${email.read ? 'read' : 'unread'}`}
-            >
-              <div className="select">
-                <input
-                  className="select-checkbox"
-                  type="checkbox"
-                  checked={email.read}
-                  onChange={() => toggleRead(email)}
-                />
-              </div>
-              <div className="star">
-                <input
-                  className="star-checkbox"
-                  type="checkbox"
-                  checked={email.starred}
-                  onChange={() => toggleStar(email)}
-                />
-              </div>
-              <div className="sender">{email.sender}</div>
-              <div className="title">{email.title}</div>
-            </li>
-          ))}
-        </ul>
-      </main>
+
+     <LeftMenu
+     currentTab={currentTab}
+      setCurrentTab={setCurrentTab}
+      hideRead={hideRead}
+      setHideRead={setHideRead}
+      unreadEmails={unreadEmails}
+      starredEmails={starredEmails}
+      />
+      
+      <EmailList
+      getFilteredEmails={getFilteredEmails}
+      toggleStar={toggleStar}
+      toggleRead={toggleRead}
+      />
+      
     </div>
   )
 }

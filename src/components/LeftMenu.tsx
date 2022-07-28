@@ -1,7 +1,12 @@
-const [hideRead, setHideRead] = useState(false)
-const unreadEmails = emails.filter(email => !email.read)
-const starredEmails = emails.filter(email => email.starred)
-function LeftMenu (){
+
+export function LeftMenu ({
+        hideRead,
+        currentTab,
+        setCurrentTab,
+        setHideRead,
+        unreadEmails,
+        starredEmails
+}){
     return(
         <nav className="left-menu">
         <ul className="inbox-list">
@@ -33,4 +38,3 @@ function LeftMenu (){
       </nav>
     )
 }
-export default LeftMenu

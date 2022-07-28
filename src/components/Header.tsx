@@ -1,4 +1,4 @@
-function Header () {
+export function Header () {
     return(
     <header className="header">
     <div className="left-menu">
@@ -19,4 +19,4 @@ function Header () {
     )
 }
 
-export default Header 
+ 
