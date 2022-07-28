@@ -1,3 +1,5 @@
+import { HidenReadLeftMenu } from "./HidenReadLeftMenu"
+import { ListItem } from "./ListItem"
 
 export function LeftMenu ({
         hideRead,
@@ -10,30 +12,27 @@ export function LeftMenu ({
     return(
         <nav className="left-menu">
         <ul className="inbox-list">
-          <li
-            className={`item ${currentTab === 'inbox' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('inbox')}
-          >
-            <span className="label">Inbox</span>
-            <span className="count">{unreadEmails.length}</span>
-          </li>
-          <li
-            className={`item ${currentTab === 'starred' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('starred')}
-          >
-            <span className="label">Starred</span>
-            <span className="count">{starredEmails.length}</span>
-          </li>
+          
+          < ListItem
+           currentTab = { currentTab }
+           setCurrentTab = { setCurrentTab }
+           tabName = "Inbox"
+           count = { unreadEmails.length }
+           /> 
 
-          <li className="item toggle">
-            <label htmlFor="hide-read">Hide read</label>
-            <input
-              id="hide-read"
-              type="checkbox"
-              checked={hideRead}
-              onChange={e => setHideRead(e.target.checked)}
-            />
-          </li>
+
+         <ListItem
+         currentTab = { currentTab }
+         setCurrentTab = { setCurrentTab }
+         tabName = "Starred"
+         count = { starredEmails.length } 
+         />
+
+         <HidenReadLeftMenu
+         hideRead = { hideRead }
+         setHideRead = { setHideRead }
+         /> 
+         
         </ul>
       </nav>
     )
